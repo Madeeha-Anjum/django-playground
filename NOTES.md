@@ -1,19 +1,29 @@
 # Django Notes
 
-Goal is to learn django and build a simple web app in a short time.
+Goal is to learn django and build a simple todo web app in a short time.
 
 ## Install django and create a project
 
-1. `pip install django`
-2. `cd mysite`
-3. `django-admin startproject mysite`
-4. Create an app callled 'todolist' `python manage.py startapp todolist`
-5 add it to the settings.py inside the main app under  `INSTALLED_APPS`
-5. run the server `python manage.py runserver`
+**Install**
+
+1. Install Django `pip install django`
+2. Create a Project `django-admin startproject mysite`
+3. Cd into the project `cd mysite`
+
+**Run**
+
+1. python migrate `python manage.py migrate`  
+    - notes: this will create a database called db.sqlite3
+2. Start the server `python manage.py runserver`
     - notes: this will run the server on port 8000
     - notes: we can change the port by running `python manage.py runserver 8080`
 
-## models
+**Add App**
+
+1. Create an **app** called 'todolist' in the project `python manage.py startapp todolist`
+2. Add the app to settings.py inside the main app under  `INSTALLED_APPS`
+
+## Models
 
 - each model maps to a database table
   
@@ -26,7 +36,7 @@ class Book(models.Model):
 
 ## Views
 
-- we want to hit an endpoint and get our books
+- we want to hit an endpoint and get our todos
 - **for each view we need to register a url**
 
 ```python
@@ -40,22 +50,30 @@ def index(request):
 
 ## urls
 
-```python
-from django.urls import path, include 
-from . import views
+1. we need to register the urls in side the url file
+2. we need to register the urls in the main app urls.py file
 
+-
+
+```python
 #  inside the main app we can register our urls and our other app urls 
+from django.urls import path, include
+from django.contrib import admin
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("todolist.urls")),
+]
+
+# ------------------------------------------------
+# inside the app we can register our urls
+from django.urls import path
 urlpatterns = [
     path('', views.index, name='index'),
-    path('todolist/', include('todolist.urls')),
+    path('add/', views.add, name='add'),
+    path('delete/<int:todo_id>/', views.delete, name='delete'),
 ]
 ```
-
-## Templates
-
-1. create a folder called `templates` inside the main app and inside the `todolist` app
-2. create a file called `index.html` inside the `templates` folder
-3. Add the templates folder to the settings.py file
 
 ## setup the admin page
 
@@ -74,6 +92,12 @@ admin.site.register(Todo)
 
 ```
 
+## Templates
+
+1. create a folder called `templates` inside the main app and inside the `todolist` app
+2. create a file called `index.html` inside the `templates` folder
+3. Add the templates folder to the settings.py file
+
 ## querying
 
 - inside the view
@@ -86,3 +110,11 @@ def index(request):
     todos = Todo.objects.all()
     return render(request, "index.html", {"todo_list": todos})
 ```
+
+## Summary
+
+- Create models and register them in the admin page
+- Create views and register them in the ur
+- Create templates and register them in the settings.py file
+- **ONLY FIRST TIME**Create app urls and register them in the main app urls
+Note: in views `add/` vs `add` the `/` is important as it means its will be getting a collection of todos and not a single todo
