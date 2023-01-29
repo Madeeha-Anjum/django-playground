@@ -51,7 +51,38 @@ urlpatterns = [
 ]
 ```
 
+## Templates
+
+1. create a folder called `templates` inside the main app and inside the `todolist` app
+2. create a file called `index.html` inside the `templates` folder
+3. Add the templates folder to the settings.py file
+
 ## setup the admin page
 
-1. `python manager.py makemig
-1. `python manage.py createsuperuser`
+0. `python manage.py migrate`
+1. `python manage.py makemigrations`
+2. create super user `python manage.py createsuperuser` and follow the instructions
+3. in the admin file created register your todo models
+
+```python
+from django.contrib import admin
+from .models import Todo
+
+# Register your models here.
+
+admin.site.register(Todo)
+
+```
+
+## querying
+
+- inside the view
+
+```python
+from .models import Todo
+
+
+def index(request):
+    todos = Todo.objects.all()
+    return render(request, "index.html", {"todo_list": todos})
+```
