@@ -4,13 +4,13 @@ Goal is to learn django and build a simple todo web app in a short time.
 
 ## Install django and create a project
 
-**Install**
+### Install
 
 1. Install Django `pip install django`
 2. Create a Project `django-admin startproject mysite`
 3. Cd into the project `cd mysite`
 
-**Run**
+### Run
 
 1. python migrate `python manage.py migrate`  
     - notes: this will create a database called db.sqlite3
@@ -18,7 +18,132 @@ Goal is to learn django and build a simple todo web app in a short time.
     - notes: this will run the server on port 8000
     - notes: we can change the port by running `python manage.py runserver 8080`
 
-**Add App**
+## Project Structure
+
+1. **dont touch** `manage.py` = command line utility || command center
+
+2. `settings.py` = main configuration file || command center
+   - apps
+   - middleware
+   - template
+   - database
+
+3. `urls.py` = main url file || router
+    - url patterns
+    - url handlers
+4. **dont touch** `wsgi.py` = web server gateway interface || entry point
+5. **dont touch** `asgi.py` = asynchronous web server gateway interface || entry point
+
+- Project is made of multiple apps(like a mini project) and each app has its own structure
+- Inside the app sits all the models, template, urls, models
+- Example: user, marketplace ect...
+- We have to register each app in the settings file
+
+## Project Structure for python manage.py startapp <APP_NAME>
+
+1. Don't touch `__init__.py` = tells python that this is a package
+
+## urls and views
+
+- urls.py is the router
+- each route executes a function that returns an html page
+- Types of views: func/class
+  - 1. function based views
+
+    ```python
+    def project(request, pk):
+        return HttpResponse(f"Single project {pk}")
+
+    # here we put a function in the view 
+    urlpatterns = [
+        path("project/<str:pk>", project, name="project"),
+    ]
+    ```
+
+  - 2. Class based views
+
+     ```python
+    class ProjectView(View):
+        def get(self, request, pk):
+            return HttpResponse(f"Single project {pk}")
+
+    # here we put a class in the view 
+    urlpatterns = [
+        path("project/<str:pk>", ProjectView.as_view(), name="project"),
+    ]
+    ```
+
+### views.py
+
+```python
+def projects(request):
+    return HttpResponse("Here are your products ")
+
+
+def project(request, pk):
+    return HttpResponse(f"Single project {pk}")
+```
+
+### Including views fom apps in the main app
+
+```python
+  from django.urls import path, include
+
+  urlpatterns = [ path("", include("projects.urls"))]
+```
+
+```python
+# the urls of the app
+from django.urls import path
+# from .views import projects, project or 
+import . from views
+urlpatterns = [
+    path("projects/", views.projects, name="projects"),
+    path("project/<str:pk>", views.project, name="project"),
+]
+```
+
+### Templates
+
+- create template folder next to the main app
+- Register it in the settings.py file
+
+```python
+
+def projects(request):
+    return render(request, "projects.html")
+
+def project(request, pk):
+    return render(request, "single-project.html")
+```
+
+#### Template inheritance
+
+- Django uses something called JINJA2
+- For example navigation `{% include 'navbar.html' %}` inside the html file
+
+- standing templates
+
+```html
+<!-- child.html -->
+{% extends 'main.html' %}
+
+{% block content%}
+<h1>Projects</h1>
+{% endblock content%}
+```
+
+```html
+<!-- main.html -->
+<body>
+    <h1>This is the main template</h1>
+    {% block content%}
+
+    {% endblock content%}
+</body>
+```
+
+### Add App
 
 1. Create an **app** called 'todolist' in the project `python manage.py startapp todolist`
 2. Add the app to settings.py inside the main app under  `INSTALLED_APPS`
