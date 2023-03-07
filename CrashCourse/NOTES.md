@@ -143,6 +143,16 @@ def project(request, pk):
 </body>
 ```
 
+#### Separating Templates
+
+##### Create a folder called templates inside app_name nad then another folder called "app_name"
+
+```html
+<!-- templates/app_name/index.html -->
+
+
+```
+
 ### Add App
 
 1. Create an **app** called 'todolist' in the project `python manage.py startapp todolist`

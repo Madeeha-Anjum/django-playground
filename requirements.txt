@@ -1,3 +1,17 @@
-Django==3.2.9
+Django==4.1.7
 # connecting djano to postgress
 psycopg2-binary==2.9.1
+
+# # linters pylint
+# pylint==2.11.1
+# # linters pylint-django
+# pylint-django==2.4.4
+# # formatter black
+# black==21.9b0
+ 
+# djlint is a linter an formatter for HTML templates (Django | Jinja | Nunjucks | Twig | Handlebars | Mustache)
+djlint==0.1.0
+# black formatter for python files 
+black==21.9b0
+# pylint linter for python files
+pylint==2.11.1
