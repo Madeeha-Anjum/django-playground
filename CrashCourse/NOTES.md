@@ -18,6 +18,12 @@ Goal is to learn django and build a simple todo web app in a short time.
     - notes: this will run the server on port 8000
     - notes: we can change the port by running `python manage.py runserver 8080`
 
+### Virtual environment
+
+1. install `pip install virtualenv`
+2.Create a virtual environment `virtualenv venv`
+1. Activate the virtual environment windows: `source venv/Scripts/activate`
+
 ## Project Structure
 
 1. **dont touch** `manage.py` = command line utility || command center
@@ -147,9 +153,16 @@ def project(request, pk):
 
 ##### Create a folder called templates inside app_name nad then another folder called "app_name"
 
+- update the views to return the correct template
+
+```python
+def projects(request):
+    return render(request, "projects/projects.html")
+
+```
+
 ```html
 <!-- templates/app_name/index.html -->
-
 
 ```
 
