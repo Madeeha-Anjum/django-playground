@@ -1,2 +1,3 @@
-# ignore everything in app folder
-app/*/__pycache__/
+#  ignore app folder and all subfolders
+app/.*
+ 
