@@ -166,6 +166,14 @@ def projects(request):
 
 ```
 
+## Default Superuser
+
+- `python mange.py makemigrates` - prep some sql commands
+
+0. `python mange.py migrate` - execute the migration
+
+1. `python manage.py createsuperuser`
+
 ### Add App
 
 1. Create an **app** called 'todolist' in the project `python manage.py startapp todolist`
@@ -236,11 +244,17 @@ from .models import Todo
 
 # Register your models here.
 
-admin.site.register(Todo)
 
 ```
 
-## Templates
+<!-- -------------------------------------------------------------------------------------------->
+## Always Register your models in the admin page
+
+- admin.site.register(Todo)
+
+<!-- -------------------------------------------------------------------------------------------->
+
+### Templates and views
 
 1. create a folder called `templates` inside the main app and inside the `todolist` app
 2. create a file called `index.html` inside the `templates` folder
@@ -266,3 +280,19 @@ def index(request):
 - Create templates and register them in the settings.py file
 - **ONLY FIRST TIME**Create app urls and register them in the main app urls
 Note: in views `add/` vs `add` the `/` is important as it means its will be getting a collection of todos and not a single todo
+
+## many to many review
+
+projects
+proj1
+proj2
+
+projects_tags - this table stores the relationship between the projects and the tags
+
+proj1 tag1
+proj1 tag2
+proj2 tag1
+
+tags
+1
+2

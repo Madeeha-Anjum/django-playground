@@ -1,7 +1,7 @@
 Django==4.1.7
+
 # connecting djano to postgress
-psycopg2-binary==2.9.1
-d
+# psycopg2-binary==2.9.1
 # # linters pylint
 # pylint==2.11.1
 # # linters pylint-django
@@ -15,3 +15,5 @@ djlint==0.1.0
 black==21.9b0
 # pylint linter for python files
 pylint==2.11.1
+
+
