@@ -17,7 +17,7 @@ services:
       - ./app:/app
     ports:
       # map port 8000 on the host to port 8000 in the container
-      - "8000:8000"
+      - "8002:8000"
     # depends_on:
     #   - db
 
