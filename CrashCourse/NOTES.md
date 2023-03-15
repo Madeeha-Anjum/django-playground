@@ -273,6 +273,42 @@ def index(request):
     return render(request, "index.html", {"todo_list": todos})
 ```
 
+### Querying with filters
+
+- we can do `attribute__startswith="value"`, `attribute__endswith="value"`, `attribute__contains="value"`, `attribute__exact="value"`, `attribute__gt="value"`, `attribute__gte="value"`, a`ttribute__lt="value"`, `attribute__lte="value"`, `attribute__in="value"`, `attribute__isnull="value"`
+`attribute__gt="value"` means greater than. `attribute__gte="value"` means greater than or equal to. `attribute__lt="value"` means less than. `attribute__lte="value"` means less than or equal to. `attribute__in="value"` means in a list. `attribute__isnull="value"` means is null.
+
+```python
+query = model.object.filter(attribute "Value")
+```
+
+### Querying more
+
+- exclude, order_by, reverse, first, last, count, distinct, values, values_list, get, create, update, delete, last, first, count, distinct, values, values_list, get, create, update, delete
+
+### Creating and updating objects
+
+- modelnmame.objects.create(attribute="value")
+- item= modelnmame.objects.get(id=1)
+- item.attribute = "value" <- set the new value here
+
+### Deleting objects
+
+- modelnmame.objects.get(id=1) - get the object
+- item.delete() - delete the object
+
+### Querying the childeren of a parent
+
+- parent = Parent.objects.get(id=1)
+- parent.childmodel_set.all() - get all the children # its called __set because its a set of children
+
+### Many to Many Querying
+
+item = Item.objects.get(id=1)
+items.relationshipname.all() - get all the related objects ## the name given in the model is the name used here
+
+```python
+
 ## Summary
 
 - Create models and register them in the admin page
