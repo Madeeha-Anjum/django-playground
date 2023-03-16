@@ -9,8 +9,6 @@ Django==4.1.7
 # # formatter black
 # black==21.9b0
  
-# djlint is a linter an formatter for HTML templates (Django | Jinja | Nunjucks | Twig | Handlebars | Mustache)
-djlint==0.1.0
 # black formatter for python files 
 black==21.9b0
 # pylint linter for python files

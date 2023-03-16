@@ -1,6 +1,5 @@
-{% extends 'main.html' %} {% block content %}
-<h1>Single Projects Page</h1>
-
-{% for tag in project.tags.all %}
-<span style="border:1px solid grey">   {{ tag }}</span>
-{% endfor %} {% endblock content %}
+{% extends 'main.html' %}
+{% block content %}
+    <h1>Single Projects Page</h1>
+    {% for tag in project.tags.all %}<span style="border:1px solid grey">{{ tag }}</span>{% endfor %}
+{% endblock content %}

@@ -1,18 +1,20 @@
-{% extends 'main.html' %} {% block content %}
-<h1>Projects</h1>
-
-<table>
-  <tr>
-    <tr> Project id</tr>
-    <th>Project Title</th>
-    <th>Project Description</th>
-  </tr>
-  {% for project in projects %}
-  <tr>
-    <td>{{project.id}}</td>
-
-    <td>{{ project.title }}</td>
-    <td>{{ project.description }}</td>
-  </tr>
-  {% endfor %} {% endblock content %}
+{% extends 'main.html' %}
+{% block content %}
+  <h1>Projects</h1>
+  <table>
+    <tr>
+      <tr>
+        Project id
+      </tr>
+      <th>Project Title</th>
+      <th>Project Description</th>
+    </tr>
+    {% for project in projects %}
+      <tr>
+        <td>{{ project.id }}</td>
+        <td>{{ project.title }}</td>
+        <td>{{ project.description }}</td>
+      </tr>
+    {% endfor %}
+  {% endblock content %}
 </table>
