@@ -14,4 +14,6 @@ black==21.9b0
 # pylint linter for python files
 pylint==2.11.1
 
+# django html linter djlint
+djlint==1.0.0
 

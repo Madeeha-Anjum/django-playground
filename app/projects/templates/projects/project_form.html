@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block content body %}
+{% block content %}
   <h1>Project Form</h1>
   <form method="post">
     {% csrf_token %}
@@ -10,4 +10,4 @@
     {% comment %} {{ form.as_p}} {% endcomment %}
     <input type="submit" />
   </form>
-{% endblock body %}
+{% endblock content %}

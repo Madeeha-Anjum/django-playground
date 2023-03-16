@@ -272,6 +272,7 @@ def index(request):
     todos = Todo.objects.all()
     return render(request, "index.html", {"todo_list": todos})
 ```
+<!-- More about templates -->
 
 ### Querying with filters
 
@@ -307,6 +308,8 @@ query = model.object.filter(attribute "Value")
 item = Item.objects.get(id=1)
 items.relationshipname.all() - get all the related objects ## the name given in the model is the name used here
 
+<!-- - --------------------------------------SUMMARY--------------------------------------------------   -->
+
 ```python
 
 ## Summary
@@ -317,7 +320,11 @@ items.relationshipname.all() - get all the related objects ## the name given in 
 - **ONLY FIRST TIME**Create app urls and register them in the main app urls
 Note: in views `add/` vs `add` the `/` is important as it means its will be getting a collection of todos and not a single todo
 
-## many to many review
+```
+
+<!--- --------------------------------------many to many review --------------------------------------------------   -->
+
+##
 
 projects
 proj1
